@@ -1,0 +1,9 @@
+---
+- name: Set kernel settings
+  become: true
+  sysctl:
+    name: "{{item.key}}"
+    value: "{{item.value}}"
+    reload: no
+  notify: reload sysctl
+  with_dict: "{{sysctl_settings}}"
